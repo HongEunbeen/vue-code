@@ -10,6 +10,7 @@
       id="toggle-all"
       class="toggle-all"
       type="checkbox"
+      v-model="allDone"
     />
     <label for="toggle-all"></label>
     <ul class="todo-list"> 
@@ -62,6 +63,21 @@
       "todo-focus": function(el, binding) {
         if(binding.value){
           el.focus();
+        }
+      }
+    },
+    computed: {
+      remaining: function(){
+        return filters.active(this.data.todos).length;
+      },
+      allDone: {
+        get: function(){
+          return this.remaining === 0;
+        },
+        set: function(value){
+          this.data.todos.forEach(todo => {
+            todo.completed = value;
+          })
         }
       }
     },
