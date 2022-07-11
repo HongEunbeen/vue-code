@@ -17,9 +17,10 @@
         v-for="todo in data.todos"
         class="todo"
         :key="todo.id"
+        :class="{completed: todo.completed, editing: todo == data.editedTodo}"
       >
         <div class="view">
-          <input class="toggle" type="checkbox" v-model="todo.components" />
+          <input class="toggle" type="checkbox" v-model="todo.completed" />
           <label @dblclick="editTodoFunc(todo)">{{todo.title}}</label>
           <button class="destroy" @click="removeTodoFunc(todo)"></button>
         </div>
@@ -39,6 +40,22 @@
 
 
 <script>
+  var filters = {
+    all: function(todos){
+      return todos;
+    },
+    active: function(todos){
+      return todos.filter(function(todo){
+        return !todo.completed;
+      });
+    },
+    completed: function(todos){
+      return todos.filter(function(todo){
+        return todo.completed;
+      })
+    }
+  }
+
   export default{
     props:['data'],
     directives: {
@@ -50,8 +67,9 @@
     },
     methods: {
       editTodoFunc: function(todo){
-         this.data.beforeEditCache = todo.title;
-         this.data.editedTodo = todo;
+        console.log("edit" + todo);
+        this.data.beforeEditCache = todo.title;
+        this.data.editedTodo = todo;
       },
       removeTodoFunc: function(todo){
         this.data.todos = this.data.todos.filter(item => item !== todo);
