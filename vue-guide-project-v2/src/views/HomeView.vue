@@ -2,12 +2,14 @@
   <main>
     <TodoInput :data.sync="data"/>
     <Todos :data.sync="data"/>
+    <Footer :data.sync="data"/>
   </main>
 </template>
 
 
 <script>
 import Todos from "../components/Todos.vue";
+import Footer from "../components/Footer.vue";
 import TodoInput from "../components/TodoInput.vue";
 import { todoStorage } from "../utils/Storage";
 
@@ -24,7 +26,8 @@ export default{
   },
   components:{
     Todos,
-    TodoInput
+    TodoInput,
+    Footer
   },
   watch:{
     todos:{
