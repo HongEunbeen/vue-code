@@ -41,21 +41,8 @@
 
 
 <script>
-  var filters = {
-    all: function(todos){
-      return todos;
-    },
-    active: function(todos){
-      return todos.filter(function(todo){
-        return !todo.completed;
-      });
-    },
-    completed: function(todos){
-      return todos.filter(function(todo){
-        return todo.completed;
-      })
-    }
-  }
+
+import { filters } from "../utils/Filters";
 
   export default{
     props:['data'],
