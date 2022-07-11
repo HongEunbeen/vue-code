@@ -54,8 +54,7 @@
          this.data.editedTodo = todo;
       },
       removeTodoFunc: function(todo){
-        console.log(this.data.todos);
-        this.data.todos = this.data.todos.filter(item => item === todo);
+        this.data.todos = this.data.todos.filter(item => item !== todo);
       },
       doneEditFunc: function(todo){
         if(!this.data.editedTodo){
