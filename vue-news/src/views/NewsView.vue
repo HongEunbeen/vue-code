@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div v-for="user in this.$store.state.news">{{ user }}</div>
+    <p v-for="item in this.$store.state.news">
+      <a v-bind:href="item.url">
+        {{ item.title }}
+      </a>
+      <small>{{ item.item_age }} by {{ item.user }}</small>
+    </p>
   </div>
 </template>
 
